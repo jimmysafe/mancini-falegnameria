@@ -1,0 +1,15 @@
+query {
+	loungeCollection {
+		items {
+			title
+			slug
+			photosCollection {
+				items {
+					title
+					description
+					url
+				}
+			}
+		}
+	}
+}

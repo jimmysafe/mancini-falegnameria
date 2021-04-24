@@ -1,0 +1,19 @@
+overwrite: true
+schema:
+  - ${CONTENTFUL_API_URL}:
+      headers:
+        Authorization: Bearer ${CONTENTFUL_API_TOKEN}
+documents: '**/*.gql'
+generates:
+  graphql/generated.tsx:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+    config:
+      skipTypename: false
+      withHooks: true
+      withHOC: false
+      withComponent: false
+      withMutationFn: true
+      reactApolloVersion: 3
