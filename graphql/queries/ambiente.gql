@@ -1,0 +1,15 @@
+query ambiente($slug: String!) {
+	ambienteCollection(where: { slug: $slug }) {
+		items {
+			title
+			slug
+			photosCollection {
+				items {
+					title
+					description
+					url
+				}
+			}
+		}
+	}
+}

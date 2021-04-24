@@ -1,0 +1,13 @@
+query ThumbnailsAmbienti {
+	ambienteCollection {
+		items {
+			title
+			slug
+			photosCollection(limit: 1) {
+				items {
+					url
+				}
+			}
+		}
+	}
+}

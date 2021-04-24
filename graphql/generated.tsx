@@ -23,11 +23,105 @@ export type Scalars = {
   Dimension: any;
   /** The 'HexColor' type represents color in `rgb:ffffff` string format. */
   HexColor: any;
-  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
-  JSON: any;
   /** The 'Quality' type represents quality as whole numeric values between `1` and `100`. */
   Quality: any;
 };
+
+/** Pagina Ambiente [See type definition](https://app.contentful.com/spaces/kyru8i5axomi/content_types/ambiente) */
+export type Ambiente = Entry & {
+  __typename?: 'Ambiente';
+  sys: Sys;
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<AmbienteLinkingCollections>;
+  title?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
+  photosCollection?: Maybe<AssetCollection>;
+};
+
+
+/** Pagina Ambiente [See type definition](https://app.contentful.com/spaces/kyru8i5axomi/content_types/ambiente) */
+export type AmbienteLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** Pagina Ambiente [See type definition](https://app.contentful.com/spaces/kyru8i5axomi/content_types/ambiente) */
+export type AmbienteTitleArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Pagina Ambiente [See type definition](https://app.contentful.com/spaces/kyru8i5axomi/content_types/ambiente) */
+export type AmbienteSlugArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Pagina Ambiente [See type definition](https://app.contentful.com/spaces/kyru8i5axomi/content_types/ambiente) */
+export type AmbientePhotosCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type AmbienteCollection = {
+  __typename?: 'AmbienteCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<Ambiente>>;
+};
+
+export type AmbienteFilter = {
+  sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
+  title_exists?: Maybe<Scalars['Boolean']>;
+  title?: Maybe<Scalars['String']>;
+  title_not?: Maybe<Scalars['String']>;
+  title_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_contains?: Maybe<Scalars['String']>;
+  title_not_contains?: Maybe<Scalars['String']>;
+  slug_exists?: Maybe<Scalars['Boolean']>;
+  slug?: Maybe<Scalars['String']>;
+  slug_not?: Maybe<Scalars['String']>;
+  slug_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  slug_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  slug_contains?: Maybe<Scalars['String']>;
+  slug_not_contains?: Maybe<Scalars['String']>;
+  photosCollection_exists?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<Maybe<AmbienteFilter>>>;
+  AND?: Maybe<Array<Maybe<AmbienteFilter>>>;
+};
+
+export type AmbienteLinkingCollections = {
+  __typename?: 'AmbienteLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type AmbienteLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export enum AmbienteOrder {
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
 
 /** Represents a binary file in a space. An asset can be any file type. */
 export type Asset = {
@@ -137,8 +231,7 @@ export type AssetFilter = {
 export type AssetLinkingCollections = {
   __typename?: 'AssetLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
-  loungeCollection?: Maybe<LoungeCollection>;
-  bannerCollection?: Maybe<BannerCollection>;
+  ambienteCollection?: Maybe<AmbienteCollection>;
 };
 
 
@@ -150,15 +243,7 @@ export type AssetLinkingCollectionsEntryCollectionArgs = {
 };
 
 
-export type AssetLinkingCollectionsLoungeCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-export type AssetLinkingCollectionsBannerCollectionArgs = {
+export type AssetLinkingCollectionsAmbienteCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -178,93 +263,6 @@ export enum AssetOrder {
   WidthDesc = 'width_DESC',
   HeightAsc = 'height_ASC',
   HeightDesc = 'height_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
-
-/** Banner Component [See type definition](https://app.contentful.com/spaces/0ihqgkks6o7a/content_types/banner) */
-export type Banner = Entry & {
-  __typename?: 'Banner';
-  sys: Sys;
-  contentfulMetadata: ContentfulMetadata;
-  linkedFrom?: Maybe<BannerLinkingCollections>;
-  title?: Maybe<Scalars['String']>;
-  image?: Maybe<Asset>;
-};
-
-
-/** Banner Component [See type definition](https://app.contentful.com/spaces/0ihqgkks6o7a/content_types/banner) */
-export type BannerLinkedFromArgs = {
-  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-/** Banner Component [See type definition](https://app.contentful.com/spaces/0ihqgkks6o7a/content_types/banner) */
-export type BannerTitleArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-/** Banner Component [See type definition](https://app.contentful.com/spaces/0ihqgkks6o7a/content_types/banner) */
-export type BannerImageArgs = {
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-export type BannerCollection = {
-  __typename?: 'BannerCollection';
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
-  items: Array<Maybe<Banner>>;
-};
-
-export type BannerFilter = {
-  sys?: Maybe<SysFilter>;
-  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
-  title_exists?: Maybe<Scalars['Boolean']>;
-  title?: Maybe<Scalars['String']>;
-  title_not?: Maybe<Scalars['String']>;
-  title_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  title_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  title_contains?: Maybe<Scalars['String']>;
-  title_not_contains?: Maybe<Scalars['String']>;
-  image_exists?: Maybe<Scalars['Boolean']>;
-  OR?: Maybe<Array<Maybe<BannerFilter>>>;
-  AND?: Maybe<Array<Maybe<BannerFilter>>>;
-};
-
-export type BannerLinkingCollections = {
-  __typename?: 'BannerLinkingCollections';
-  entryCollection?: Maybe<EntryCollection>;
-  sectionCollection?: Maybe<SectionCollection>;
-};
-
-
-export type BannerLinkingCollectionsEntryCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-export type BannerLinkingCollectionsSectionCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-export enum BannerOrder {
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC',
   SysIdAsc = 'sys_id_ASC',
   SysIdDesc = 'sys_id_DESC',
   SysPublishedAtAsc = 'sys_publishedAt_ASC',
@@ -430,378 +428,12 @@ export type ImageTransformOptions = {
 };
 
 
-/** [See type definition](https://app.contentful.com/spaces/0ihqgkks6o7a/content_types/lounge) */
-export type Lounge = Entry & {
-  __typename?: 'Lounge';
-  sys: Sys;
-  contentfulMetadata: ContentfulMetadata;
-  linkedFrom?: Maybe<LoungeLinkingCollections>;
-  title?: Maybe<Scalars['String']>;
-  slug?: Maybe<Scalars['String']>;
-  photosCollection?: Maybe<AssetCollection>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/0ihqgkks6o7a/content_types/lounge) */
-export type LoungeLinkedFromArgs = {
-  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/0ihqgkks6o7a/content_types/lounge) */
-export type LoungeTitleArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/0ihqgkks6o7a/content_types/lounge) */
-export type LoungeSlugArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/0ihqgkks6o7a/content_types/lounge) */
-export type LoungePhotosCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-export type LoungeCollection = {
-  __typename?: 'LoungeCollection';
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
-  items: Array<Maybe<Lounge>>;
-};
-
-export type LoungeFilter = {
-  sys?: Maybe<SysFilter>;
-  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
-  title_exists?: Maybe<Scalars['Boolean']>;
-  title?: Maybe<Scalars['String']>;
-  title_not?: Maybe<Scalars['String']>;
-  title_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  title_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  title_contains?: Maybe<Scalars['String']>;
-  title_not_contains?: Maybe<Scalars['String']>;
-  slug_exists?: Maybe<Scalars['Boolean']>;
-  slug?: Maybe<Scalars['String']>;
-  slug_not?: Maybe<Scalars['String']>;
-  slug_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  slug_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  slug_contains?: Maybe<Scalars['String']>;
-  slug_not_contains?: Maybe<Scalars['String']>;
-  photosCollection_exists?: Maybe<Scalars['Boolean']>;
-  OR?: Maybe<Array<Maybe<LoungeFilter>>>;
-  AND?: Maybe<Array<Maybe<LoungeFilter>>>;
-};
-
-export type LoungeLinkingCollections = {
-  __typename?: 'LoungeLinkingCollections';
-  entryCollection?: Maybe<EntryCollection>;
-};
-
-
-export type LoungeLinkingCollectionsEntryCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-export enum LoungeOrder {
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC',
-  SlugAsc = 'slug_ASC',
-  SlugDesc = 'slug_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
-
-/** page [See type definition](https://app.contentful.com/spaces/0ihqgkks6o7a/content_types/page) */
-export type Page = Entry & {
-  __typename?: 'Page';
-  sys: Sys;
-  contentfulMetadata: ContentfulMetadata;
-  linkedFrom?: Maybe<PageLinkingCollections>;
-  text?: Maybe<Scalars['String']>;
-  contentBlocksCollection?: Maybe<PageContentBlocksCollection>;
-};
-
-
-/** page [See type definition](https://app.contentful.com/spaces/0ihqgkks6o7a/content_types/page) */
-export type PageLinkedFromArgs = {
-  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-/** page [See type definition](https://app.contentful.com/spaces/0ihqgkks6o7a/content_types/page) */
-export type PageTextArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-/** page [See type definition](https://app.contentful.com/spaces/0ihqgkks6o7a/content_types/page) */
-export type PageContentBlocksCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-export type PageCollection = {
-  __typename?: 'PageCollection';
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
-  items: Array<Maybe<Page>>;
-};
-
-export type PageContentBlocksCollection = {
-  __typename?: 'PageContentBlocksCollection';
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
-  items: Array<Maybe<Entry>>;
-};
-
-export type PageFilter = {
-  sys?: Maybe<SysFilter>;
-  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
-  text_exists?: Maybe<Scalars['Boolean']>;
-  text?: Maybe<Scalars['String']>;
-  text_not?: Maybe<Scalars['String']>;
-  text_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  text_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  text_contains?: Maybe<Scalars['String']>;
-  text_not_contains?: Maybe<Scalars['String']>;
-  contentBlocksCollection_exists?: Maybe<Scalars['Boolean']>;
-  OR?: Maybe<Array<Maybe<PageFilter>>>;
-  AND?: Maybe<Array<Maybe<PageFilter>>>;
-};
-
-export type PageLinkingCollections = {
-  __typename?: 'PageLinkingCollections';
-  entryCollection?: Maybe<EntryCollection>;
-};
-
-
-export type PageLinkingCollectionsEntryCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-export enum PageOrder {
-  TextAsc = 'text_ASC',
-  TextDesc = 'text_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
-
-/** blog post [See type definition](https://app.contentful.com/spaces/0ihqgkks6o7a/content_types/post) */
-export type Post = Entry & {
-  __typename?: 'Post';
-  sys: Sys;
-  contentfulMetadata: ContentfulMetadata;
-  linkedFrom?: Maybe<PostLinkingCollections>;
-  postTitle?: Maybe<Scalars['String']>;
-  contentBlocks?: Maybe<Scalars['JSON']>;
-  test?: Maybe<Scalars['JSON']>;
-};
-
-
-/** blog post [See type definition](https://app.contentful.com/spaces/0ihqgkks6o7a/content_types/post) */
-export type PostLinkedFromArgs = {
-  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-/** blog post [See type definition](https://app.contentful.com/spaces/0ihqgkks6o7a/content_types/post) */
-export type PostPostTitleArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-/** blog post [See type definition](https://app.contentful.com/spaces/0ihqgkks6o7a/content_types/post) */
-export type PostContentBlocksArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-/** blog post [See type definition](https://app.contentful.com/spaces/0ihqgkks6o7a/content_types/post) */
-export type PostTestArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-export type PostCollection = {
-  __typename?: 'PostCollection';
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
-  items: Array<Maybe<Post>>;
-};
-
-export type PostFilter = {
-  sys?: Maybe<SysFilter>;
-  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
-  post_title_exists?: Maybe<Scalars['Boolean']>;
-  post_title?: Maybe<Scalars['String']>;
-  post_title_not?: Maybe<Scalars['String']>;
-  post_title_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  post_title_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  post_title_contains?: Maybe<Scalars['String']>;
-  post_title_not_contains?: Maybe<Scalars['String']>;
-  OR?: Maybe<Array<Maybe<PostFilter>>>;
-  AND?: Maybe<Array<Maybe<PostFilter>>>;
-};
-
-export type PostLinkingCollections = {
-  __typename?: 'PostLinkingCollections';
-  entryCollection?: Maybe<EntryCollection>;
-};
-
-
-export type PostLinkingCollectionsEntryCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-export enum PostOrder {
-  PostTitleAsc = 'post_title_ASC',
-  PostTitleDesc = 'post_title_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
-
-/** Proposal Model [See type definition](https://app.contentful.com/spaces/0ihqgkks6o7a/content_types/proposal) */
-export type Proposal = Entry & {
-  __typename?: 'Proposal';
-  sys: Sys;
-  contentfulMetadata: ContentfulMetadata;
-  linkedFrom?: Maybe<ProposalLinkingCollections>;
-  proposalName?: Maybe<Scalars['String']>;
-  contentCollection?: Maybe<ProposalContentCollection>;
-};
-
-
-/** Proposal Model [See type definition](https://app.contentful.com/spaces/0ihqgkks6o7a/content_types/proposal) */
-export type ProposalLinkedFromArgs = {
-  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-/** Proposal Model [See type definition](https://app.contentful.com/spaces/0ihqgkks6o7a/content_types/proposal) */
-export type ProposalProposalNameArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-/** Proposal Model [See type definition](https://app.contentful.com/spaces/0ihqgkks6o7a/content_types/proposal) */
-export type ProposalContentCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-export type ProposalCollection = {
-  __typename?: 'ProposalCollection';
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
-  items: Array<Maybe<Proposal>>;
-};
-
-export type ProposalContentCollection = {
-  __typename?: 'ProposalContentCollection';
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
-  items: Array<Maybe<Section>>;
-};
-
-export type ProposalFilter = {
-  sys?: Maybe<SysFilter>;
-  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
-  proposalName_exists?: Maybe<Scalars['Boolean']>;
-  proposalName?: Maybe<Scalars['String']>;
-  proposalName_not?: Maybe<Scalars['String']>;
-  proposalName_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  proposalName_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  proposalName_contains?: Maybe<Scalars['String']>;
-  proposalName_not_contains?: Maybe<Scalars['String']>;
-  contentCollection_exists?: Maybe<Scalars['Boolean']>;
-  OR?: Maybe<Array<Maybe<ProposalFilter>>>;
-  AND?: Maybe<Array<Maybe<ProposalFilter>>>;
-};
-
-export type ProposalLinkingCollections = {
-  __typename?: 'ProposalLinkingCollections';
-  entryCollection?: Maybe<EntryCollection>;
-};
-
-
-export type ProposalLinkingCollectionsEntryCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-export enum ProposalOrder {
-  ProposalNameAsc = 'proposalName_ASC',
-  ProposalNameDesc = 'proposalName_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
-
-
 export type Query = {
   __typename?: 'Query';
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
-  lounge?: Maybe<Lounge>;
-  loungeCollection?: Maybe<LoungeCollection>;
-  post?: Maybe<Post>;
-  postCollection?: Maybe<PostCollection>;
-  section?: Maybe<Section>;
-  sectionCollection?: Maybe<SectionCollection>;
-  proposal?: Maybe<Proposal>;
-  proposalCollection?: Maybe<ProposalCollection>;
-  page?: Maybe<Page>;
-  pageCollection?: Maybe<PageCollection>;
-  banner?: Maybe<Banner>;
-  bannerCollection?: Maybe<BannerCollection>;
+  ambiente?: Maybe<Ambiente>;
+  ambienteCollection?: Maybe<AmbienteCollection>;
   entryCollection?: Maybe<EntryCollection>;
 };
 
@@ -823,105 +455,20 @@ export type QueryAssetCollectionArgs = {
 };
 
 
-export type QueryLoungeArgs = {
+export type QueryAmbienteArgs = {
   id: Scalars['String'];
   preview?: Maybe<Scalars['Boolean']>;
   locale?: Maybe<Scalars['String']>;
 };
 
 
-export type QueryLoungeCollectionArgs = {
+export type QueryAmbienteCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
   locale?: Maybe<Scalars['String']>;
-  where?: Maybe<LoungeFilter>;
-  order?: Maybe<Array<Maybe<LoungeOrder>>>;
-};
-
-
-export type QueryPostArgs = {
-  id: Scalars['String'];
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryPostCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-  where?: Maybe<PostFilter>;
-  order?: Maybe<Array<Maybe<PostOrder>>>;
-};
-
-
-export type QuerySectionArgs = {
-  id: Scalars['String'];
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-export type QuerySectionCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-  where?: Maybe<SectionFilter>;
-  order?: Maybe<Array<Maybe<SectionOrder>>>;
-};
-
-
-export type QueryProposalArgs = {
-  id: Scalars['String'];
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryProposalCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-  where?: Maybe<ProposalFilter>;
-  order?: Maybe<Array<Maybe<ProposalOrder>>>;
-};
-
-
-export type QueryPageArgs = {
-  id: Scalars['String'];
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryPageCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-  where?: Maybe<PageFilter>;
-  order?: Maybe<Array<Maybe<PageOrder>>>;
-};
-
-
-export type QueryBannerArgs = {
-  id: Scalars['String'];
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryBannerCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-  where?: Maybe<BannerFilter>;
-  order?: Maybe<Array<Maybe<BannerOrder>>>;
+  where?: Maybe<AmbienteFilter>;
+  order?: Maybe<Array<Maybe<AmbienteOrder>>>;
 };
 
 
@@ -933,103 +480,6 @@ export type QueryEntryCollectionArgs = {
   where?: Maybe<EntryFilter>;
   order?: Maybe<Array<Maybe<EntryOrder>>>;
 };
-
-/** Seciton Block [See type definition](https://app.contentful.com/spaces/0ihqgkks6o7a/content_types/section) */
-export type Section = Entry & {
-  __typename?: 'Section';
-  sys: Sys;
-  contentfulMetadata: ContentfulMetadata;
-  linkedFrom?: Maybe<SectionLinkingCollections>;
-  sectionName?: Maybe<Scalars['String']>;
-  contentBlocksCollection?: Maybe<SectionContentBlocksCollection>;
-};
-
-
-/** Seciton Block [See type definition](https://app.contentful.com/spaces/0ihqgkks6o7a/content_types/section) */
-export type SectionLinkedFromArgs = {
-  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-/** Seciton Block [See type definition](https://app.contentful.com/spaces/0ihqgkks6o7a/content_types/section) */
-export type SectionSectionNameArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-/** Seciton Block [See type definition](https://app.contentful.com/spaces/0ihqgkks6o7a/content_types/section) */
-export type SectionContentBlocksCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-export type SectionCollection = {
-  __typename?: 'SectionCollection';
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
-  items: Array<Maybe<Section>>;
-};
-
-export type SectionContentBlocksCollection = {
-  __typename?: 'SectionContentBlocksCollection';
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
-  items: Array<Maybe<Banner>>;
-};
-
-export type SectionFilter = {
-  sys?: Maybe<SysFilter>;
-  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
-  sectionName_exists?: Maybe<Scalars['Boolean']>;
-  sectionName?: Maybe<Scalars['String']>;
-  sectionName_not?: Maybe<Scalars['String']>;
-  sectionName_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  sectionName_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  sectionName_contains?: Maybe<Scalars['String']>;
-  sectionName_not_contains?: Maybe<Scalars['String']>;
-  contentBlocksCollection_exists?: Maybe<Scalars['Boolean']>;
-  OR?: Maybe<Array<Maybe<SectionFilter>>>;
-  AND?: Maybe<Array<Maybe<SectionFilter>>>;
-};
-
-export type SectionLinkingCollections = {
-  __typename?: 'SectionLinkingCollections';
-  entryCollection?: Maybe<EntryCollection>;
-  proposalCollection?: Maybe<ProposalCollection>;
-};
-
-
-export type SectionLinkingCollectionsEntryCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-export type SectionLinkingCollectionsProposalCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-export enum SectionOrder {
-  SectionNameAsc = 'sectionName_ASC',
-  SectionNameDesc = 'sectionName_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
 
 export type Sys = {
   __typename?: 'Sys';
@@ -1078,16 +528,18 @@ export type SysFilter = {
   publishedVersion_lte?: Maybe<Scalars['Float']>;
 };
 
-export type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
+export type AmbienteQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
 
 
-export type Unnamed_1_Query = (
+export type AmbienteQuery = (
   { __typename?: 'Query' }
-  & { loungeCollection?: Maybe<(
-    { __typename?: 'LoungeCollection' }
+  & { ambienteCollection?: Maybe<(
+    { __typename?: 'AmbienteCollection' }
     & { items: Array<Maybe<(
-      { __typename?: 'Lounge' }
-      & Pick<Lounge, 'title' | 'slug'>
+      { __typename?: 'Ambiente' }
+      & Pick<Ambiente, 'title' | 'slug'>
       & { photosCollection?: Maybe<(
         { __typename?: 'AssetCollection' }
         & { items: Array<Maybe<(
@@ -1099,10 +551,31 @@ export type Unnamed_1_Query = (
   )> }
 );
 
+export type ThumbnailsAmbientiQueryVariables = Exact<{ [key: string]: never; }>;
 
-export const Document = gql`
-    {
-  loungeCollection {
+
+export type ThumbnailsAmbientiQuery = (
+  { __typename?: 'Query' }
+  & { ambienteCollection?: Maybe<(
+    { __typename?: 'AmbienteCollection' }
+    & { items: Array<Maybe<(
+      { __typename?: 'Ambiente' }
+      & Pick<Ambiente, 'title' | 'slug'>
+      & { photosCollection?: Maybe<(
+        { __typename?: 'AssetCollection' }
+        & { items: Array<Maybe<(
+          { __typename?: 'Asset' }
+          & Pick<Asset, 'url'>
+        )>> }
+      )> }
+    )>> }
+  )> }
+);
+
+
+export const AmbienteDocument = gql`
+    query ambiente($slug: String!) {
+  ambienteCollection(where: {slug: $slug}) {
     items {
       title
       slug
@@ -1119,28 +592,71 @@ export const Document = gql`
     `;
 
 /**
- * __useQuery__
+ * __useAmbienteQuery__
  *
- * To run a query within a React component, call `useQuery` and pass it any options that fit your needs.
- * When your component renders, `useQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useAmbienteQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAmbienteQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useQuery({
+ * const { data, loading, error } = useAmbienteQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useAmbienteQuery(baseOptions: Apollo.QueryHookOptions<AmbienteQuery, AmbienteQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AmbienteQuery, AmbienteQueryVariables>(AmbienteDocument, options);
+      }
+export function useAmbienteLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AmbienteQuery, AmbienteQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AmbienteQuery, AmbienteQueryVariables>(AmbienteDocument, options);
+        }
+export type AmbienteQueryHookResult = ReturnType<typeof useAmbienteQuery>;
+export type AmbienteLazyQueryHookResult = ReturnType<typeof useAmbienteLazyQuery>;
+export type AmbienteQueryResult = Apollo.QueryResult<AmbienteQuery, AmbienteQueryVariables>;
+export const ThumbnailsAmbientiDocument = gql`
+    query ThumbnailsAmbienti {
+  ambienteCollection {
+    items {
+      title
+      slug
+      photosCollection(limit: 1) {
+        items {
+          url
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useThumbnailsAmbientiQuery__
+ *
+ * To run a query within a React component, call `useThumbnailsAmbientiQuery` and pass it any options that fit your needs.
+ * When your component renders, `useThumbnailsAmbientiQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useThumbnailsAmbientiQuery({
  *   variables: {
  *   },
  * });
  */
-export function useQuery(baseOptions?: Apollo.QueryHookOptions<Query, QueryVariables>) {
+export function useThumbnailsAmbientiQuery(baseOptions?: Apollo.QueryHookOptions<ThumbnailsAmbientiQuery, ThumbnailsAmbientiQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<Query, QueryVariables>(Document, options);
+        return Apollo.useQuery<ThumbnailsAmbientiQuery, ThumbnailsAmbientiQueryVariables>(ThumbnailsAmbientiDocument, options);
       }
-export function useLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Query, QueryVariables>) {
+export function useThumbnailsAmbientiLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ThumbnailsAmbientiQuery, ThumbnailsAmbientiQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<Query, QueryVariables>(Document, options);
+          return Apollo.useLazyQuery<ThumbnailsAmbientiQuery, ThumbnailsAmbientiQueryVariables>(ThumbnailsAmbientiDocument, options);
         }
-export type QueryHookResult = ReturnType<typeof useQuery>;
-export type LazyQueryHookResult = ReturnType<typeof useLazyQuery>;
-export type QueryResult = Apollo.QueryResult<Query, QueryVariables>;
+export type ThumbnailsAmbientiQueryHookResult = ReturnType<typeof useThumbnailsAmbientiQuery>;
+export type ThumbnailsAmbientiLazyQueryHookResult = ReturnType<typeof useThumbnailsAmbientiLazyQuery>;
+export type ThumbnailsAmbientiQueryResult = Apollo.QueryResult<ThumbnailsAmbientiQuery, ThumbnailsAmbientiQueryVariables>;
