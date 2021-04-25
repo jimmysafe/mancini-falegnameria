@@ -26,20 +26,24 @@ const Ambiente: NextPage<AmbienteProps> = ({ slug }) => {
 	const photosUrls = photos?.map((photo) => photo?.url);
 
 	return (
-		<div className='container mx-auto'>
+		<div className='mt-10'>
 			<Snuggle>
 				{photos?.map((photo, index) => (
 					<div
 						key={photo?.url}
-						className='group relative cursor-pointer font-primary'
+						className='group relative cursor-pointer font-primary rounded-md overflow-hidden'
 						onClick={() => {
 							setIsOpen(true);
 							setPhotoIndex(index);
 						}}
 					>
-						<img src={photo?.url ? photo.url : ''} alt={photo?.title ? photo.title : ''} />
+						<img
+							className='rounded-md'
+							src={photo?.url ? photo.url : ''}
+							alt={photo?.title ? photo.title : ''}
+						/>
 						<div
-							className='absolute -bottom-16 left-0 w-full opacity-0 bg-white text-black group-hover:bottom-0 group-hover:opacity-100 transition-all duration-300 p-4'
+							className='absolute -bottom-16 left-0 w-full opacity-0 bg-secondary text-darkText group-hover:bottom-0 group-hover:opacity-100 transition-all duration-300 p-4'
 							style={{ minHeight: 100 }}
 						>
 							<p className='uppercase text-sm font-medium tracking-wide mb-4'>{photo?.title}</p>

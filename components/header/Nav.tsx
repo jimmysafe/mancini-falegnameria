@@ -22,11 +22,13 @@ const Logo: FC = () => {
 
 const Nav: FC = () => {
 	return (
-		<nav className='relative flex justify-between items-center '>
-			<Button text='Ciao belli' bgColor='brown' textColor='light' />
-			<Logo />
-			<NavItems />
-		</nav>
+		<header className='px-4 py-8 container mx-auto'>
+			<nav className='relative flex justify-between items-center '>
+				<Button text='Richiedi un Preventivo' bgColor='brown' textColor='light' />
+				<Logo />
+				<NavItems />
+			</nav>
+		</header>
 	);
 };
 

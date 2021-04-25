@@ -8,8 +8,9 @@ module.exports = {
 			},
 			colors: {
 				primary: '#CAB7A8', // brownish
-				secondary: '#BDBBB7', // greyish
-				dark: '#707070', // dark text grey
+				secondary: '#313131', // bg-color dark
+				tertiary: '#191919', // bg-color superdark
+				darkText: '#707070', // dark text grey
 			},
 		},
 	},

@@ -12,7 +12,7 @@ const NavItems: FC = () => {
 			{items.map((item) => (
 				<span
 					key={item.name}
-					className='uppercase tracking-wide ml-6 cursor-pointer text-dark font-primary text-sm'
+					className='uppercase tracking-wider ml-6 cursor-pointer text-darkText font-primary text-xs font-medium'
 				>
 					{item.name}
 				</span>
