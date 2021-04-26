@@ -1,46 +1,25 @@
 import { FC } from 'react';
+import { TextColor, BgColor } from '../../enums';
+import { getBgColor, getTextColor } from '../../utils/index';
 
 type ButtonProps = {
-	bgColor: string;
-	textColor: string;
+	bgColor: BgColor;
+	textColor: TextColor;
 	text: string;
 	onClick?: () => void;
+	className?: string;
 };
 
-const getBgColor = (bgColor: string) => {
-	switch (bgColor) {
-		case 'brown':
-			return 'bg-primary';
-		case 'white':
-			return 'bg-white';
-		case 'grey':
-			return 'bg-secondary';
-		default:
-			return '';
-	}
-};
-
-const getTextColor = (textColor: string) => {
-	switch (textColor) {
-		case 'dark':
-			return 'text-primary';
-		case 'light':
-			return 'text-white';
-		default:
-			return 'text-primary';
-	}
-};
-
-const Button: FC<ButtonProps> = ({ bgColor, textColor, text, onClick }) => {
+const Button: FC<ButtonProps> = ({ bgColor, textColor, text, onClick, className }) => {
 	return (
-		<div
+		<button
 			onClick={onClick}
 			className={`${getBgColor(bgColor)} ${getTextColor(
 				textColor
-			)} px-8 py-2 cursor-pointer uppercase font-primary text-xs font-medium tracking-wide`}
+			)} px-8 py-2 cursor-pointer uppercase font-primary text-xs font-medium tracking-wide rounded-sm ${className}`}
 		>
 			{text}
-		</div>
+		</button>
 	);
 };
 

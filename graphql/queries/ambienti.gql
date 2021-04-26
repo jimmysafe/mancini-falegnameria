@@ -1,0 +1,13 @@
+query Ambienti {
+	ambienteCollection {
+		items {
+			title
+			slug
+			photosCollection {
+				items {
+					url
+				}
+			}
+		}
+	}
+}

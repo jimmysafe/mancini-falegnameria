@@ -787,6 +787,27 @@ export type AmbienteQuery = (
   )> }
 );
 
+export type AmbientiQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AmbientiQuery = (
+  { __typename?: 'Query' }
+  & { ambienteCollection?: Maybe<(
+    { __typename?: 'AmbienteCollection' }
+    & { items: Array<Maybe<(
+      { __typename?: 'Ambiente' }
+      & Pick<Ambiente, 'title' | 'slug'>
+      & { photosCollection?: Maybe<(
+        { __typename?: 'AssetCollection' }
+        & { items: Array<Maybe<(
+          { __typename?: 'Asset' }
+          & Pick<Asset, 'url'>
+        )>> }
+      )> }
+    )>> }
+  )> }
+);
+
 export type ThumbnailsAmbientiQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -854,6 +875,48 @@ export function useAmbienteLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<A
 export type AmbienteQueryHookResult = ReturnType<typeof useAmbienteQuery>;
 export type AmbienteLazyQueryHookResult = ReturnType<typeof useAmbienteLazyQuery>;
 export type AmbienteQueryResult = Apollo.QueryResult<AmbienteQuery, AmbienteQueryVariables>;
+export const AmbientiDocument = gql`
+    query Ambienti {
+  ambienteCollection {
+    items {
+      title
+      slug
+      photosCollection {
+        items {
+          url
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useAmbientiQuery__
+ *
+ * To run a query within a React component, call `useAmbientiQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAmbientiQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAmbientiQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useAmbientiQuery(baseOptions?: Apollo.QueryHookOptions<AmbientiQuery, AmbientiQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AmbientiQuery, AmbientiQueryVariables>(AmbientiDocument, options);
+      }
+export function useAmbientiLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AmbientiQuery, AmbientiQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AmbientiQuery, AmbientiQueryVariables>(AmbientiDocument, options);
+        }
+export type AmbientiQueryHookResult = ReturnType<typeof useAmbientiQuery>;
+export type AmbientiLazyQueryHookResult = ReturnType<typeof useAmbientiLazyQuery>;
+export type AmbientiQueryResult = Apollo.QueryResult<AmbientiQuery, AmbientiQueryVariables>;
 export const ThumbnailsAmbientiDocument = gql`
     query ThumbnailsAmbienti {
   ambienteCollection {

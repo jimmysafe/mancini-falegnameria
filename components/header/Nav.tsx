@@ -1,4 +1,5 @@
-import Button from 'components/layout/Button';
+import Button from '../layout/Button';
+import { TextColor, BgColor } from '../../enums';
 import { FC } from 'react';
 import NavItems from './NavItems';
 import { useRouter } from 'next/router';
@@ -24,7 +25,12 @@ const Nav: FC = () => {
 	return (
 		<header className='px-4 py-8 container mx-auto'>
 			<nav className='relative flex justify-between items-center '>
-				<Button text='Richiedi un Preventivo' bgColor='brown' textColor='light' />
+				<Button
+					text='Richiedi un Preventivo'
+					bgColor={BgColor.BROWN}
+					textColor={TextColor.LIGHT}
+					className='md:block hidden hover:bg-white hover:text-secondary transition-all duration-300'
+				/>
 				<Logo />
 				<NavItems />
 			</nav>
