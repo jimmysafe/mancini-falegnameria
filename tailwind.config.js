@@ -12,6 +12,20 @@ module.exports = {
 				tertiary: '#191919', // bg-color superdark
 				darkText: '#707070', // dark text grey
 			},
+			keyframes: {
+				slideIn: {
+					'0%': { left: '100vw' },
+					'100%': { left: '0vw' },
+				},
+				slideOut: {
+					'0%': { left: '0vw' },
+					'100%': { left: '100vw' },
+				},
+			},
+			animation: {
+				slideIn: 'slideIn 300ms ease-in-out',
+				slideOut: 'slideOut 300ms ease-in-out',
+			},
 		},
 	},
 	variants: {
